@@ -1,14 +1,18 @@
 'use strict';
 
-let hasDriversLicense = false;
-const passTest = true;
+function logger(){
+     console.log('My name is Oddy');
+}
 
-if(passTest) hasDriversLicense = true;
+// calling | running | executing | invoking the function
+logger();
 
-if(hasDriversLicense) console.log('i can drive!');
+function fruitProcessor(apples, oranges){
+     
+     console.log(`${apples} - ${oranges} \n`);
+     const juice = `Juice created with ${apples} apples and ${oranges} oranges.`;
+     return juice;
+}
 
-
-//Example: reserved keywords introduced by stric mode
-const interface = 'Audio';
-
-const private = 324;
+const appleJuice = fruitProcessor(5, 3);
+console.log(appleJuice);
