@@ -1,18 +1,18 @@
 'use strict';
 
-function logger(){
-     console.log('My name is Oddy');
+const age1 = calcAge1(1982, 2021); 
+
+//function declaration
+function calcAge1(birthYear, currentYear){
+
+     return currentYear-birthYear;
 }
 
-// calling | running | executing | invoking the function
-logger();
+//function expression
+const calcAge2 = function(birthYear, currentYear){
 
-function fruitProcessor(apples, oranges){
-     
-     console.log(`${apples} - ${oranges} \n`);
-     const juice = `Juice created with ${apples} apples and ${oranges} oranges.`;
-     return juice;
+     return currentYear-birthYear;
 }
+const age2 = calcAge2(1978, 2021);
 
-const appleJuice = fruitProcessor(5, 3);
-console.log(appleJuice);
+console.log(age1, age2);
