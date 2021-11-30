@@ -1,34 +1,28 @@
-'use strict';
 
-const age1 = calcAge1(1982, 2021); 
+//literal syntax for creating an array
+const friends = ['Michael', 'Steven', 'Peter'];
 
-//function declaration
-function calcAge1(birthYear, currentYear){
+const years = new Array(1921, 1922, 1923, 1924);
 
-     return currentYear-birthYear;
+console.log(friends[2]);
+
+console.log(friends.length);
+
+console.log(friends[friends.length-1])
+
+const myArray = ['david', 2012, years];
+
+console.log(myArray);
+
+// Excercise
+const calAge = function(birthYear){
+     return 2021-birthYear;
 }
 
-//function expression
-const calcAge2 = function(birthYear, currentYear){
+console.log(calAge(years[0]));
 
-     return currentYear-birthYear;
-}
-const age2 = calcAge2(1978, 2021);
+console.log(years.shift());
 
-console.log(age1, age2);
+console.log(years);
 
-//Arrow function
-
-//single line Arrow function 
-const age = birthYear => 2021 - birthYear;
-console.log(age(1996));
-
-//multipe line Arrow function 
-const yearsUntilRetirement = (firstname, birthYear) => {
-
-     const age = 2021-birthYear;
-     const retirement = 65 - age;
-
-     return `${firstname} retires in ${retirement}years`;
-}
-console.log(yearsUntilRetirement('Oddy', 1996));
+console.log(friends.includes('Steven'));
