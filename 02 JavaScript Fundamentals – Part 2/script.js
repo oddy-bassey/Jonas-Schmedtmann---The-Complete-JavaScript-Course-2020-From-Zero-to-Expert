@@ -1,34 +1,31 @@
+//bmi = m/h2
 
-//Objects
+const mark = {
+     firstname : 'Mark',
+     lastname : 'Miller',
+     mass : 78,
+     height : 1.69,
 
-//object function
-const oddy = {
-     fristname: 'Oddy',
-     lastname: 'Bassey',
-     birthYear : '1996',
-     job: 'CEO of Revoltcode',
-     friends: ['Twin', 'Andrew', 'Gabriel', 'Mitchanki'],
-
-     // age: function(birthYear){
-     //      return 2021-birthYear;
-     // }
-     
-     // age: function(){
-     //      console.log(this);
-     //      return 2021-this.birthYear;
-     // }
-
-     calcAge: function(){
-          this.age = 2021-this.birthYear;
-          return this.age;
-     },
-
-     getSummary: function(){
-          return `${this.fristname} is a ${this.calcAge()} year old ${this.job}, he has ${this.friends.length} friends`;
+     calcBMI : function(){
+          this.bmi = this.mass / (this.height**2);
+          return this.bmi;
      }
-}; 
+}
 
-console.log(oddy.calcAge());
-//console.log(oddy['age'](oddy.birthYear));
+const john = {
+     firstname : 'John',
+     lastname : 'Smith',
+     mass : 92,
+     height : 1.95,
 
-console.log(oddy.getSummary());
+     calcBMI : function(){
+          this.bmi = this.mass / (this.height**2);
+          return this.bmi;
+     }
+}
+
+if(mark.calcBMI() > john.calcBMI()){
+     console.log(`${mark.firstname} ${mark.lastname}'s BMI (${mark.bmi}) is higher than ${john.firstname} ${john.lastname}'s (${john.bmi})`);
+}else{
+     console.log(`${john.firstname} ${john.lastname}'s BMI (${john.bmi}) is higher than ${mark.firstname} ${mark.lastname}'s (${mark.bmi})`);
+}
