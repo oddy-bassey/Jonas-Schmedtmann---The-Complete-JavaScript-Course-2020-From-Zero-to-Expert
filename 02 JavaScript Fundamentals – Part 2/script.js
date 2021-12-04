@@ -1,28 +1,27 @@
 
-//literal syntax for creating an array
-const friends = ['Michael', 'Steven', 'Peter'];
+//Objects
 
-const years = new Array(1921, 1922, 1923, 1924);
+//Dot vs Bracket notation
+const oddy = {
+     fristname: 'Oddy',
+     lastname: 'Bassey',
+     age: 2021-1996,
+     job: 'CEO Revoltcode',
+     friends: ['Twin', 'Andrew', 'Gabriel', 'Mitchanki']
+};
 
-console.log(friends[2]);
+const value = prompt('what do u want to know about revoltcode owner(firstname, lastname, friends, age');
 
-console.log(friends.length);
-
-console.log(friends[friends.length-1])
-
-const myArray = ['david', 2012, years];
-
-console.log(myArray);
-
-// Excercise
-const calAge = function(birthYear){
-     return 2021-birthYear;
+if(oddy[value]){
+     console.log(oddy[value]);
+}else{
+     const data = prompt(`provide this information(${value}) about the CEO if you have any idea!`)
+     oddy[value] = data;
+     console.log('revoltcode thanks u :)!');
 }
 
-console.log(calAge(years[0]));
-
-console.log(years.shift());
-
-console.log(years);
-
-console.log(friends.includes('Steven'));
+//adding new properties to the object using the Dot & Bracket notation
+oddy.location = 'Denmark';
+oddy['girlfriend'] = 'Uyime';
+console.log(oddy);
+console.log(`${oddy.fristname} has ${oddy.friends.length} friends, and his best friend is ${oddy.friends[1]}`);
