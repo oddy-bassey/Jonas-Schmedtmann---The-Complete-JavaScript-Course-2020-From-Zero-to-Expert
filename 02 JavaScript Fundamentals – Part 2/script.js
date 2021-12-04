@@ -1,31 +1,35 @@
-//bmi = m/h2
+//LOOPS
 
-const mark = {
-     firstname : 'Mark',
-     lastname : 'Miller',
-     mass : 78,
-     height : 1.69,
-
-     calcBMI : function(){
-          this.bmi = this.mass / (this.height**2);
-          return this.bmi;
-     }
+for (let i=1; i<=10; i++){
+     //console.log(`running ${i} times!`)
 }
 
-const john = {
-     firstname : 'John',
-     lastname : 'Smith',
-     mass : 92,
-     height : 1.95,
+// continue and break stateents
 
-     calcBMI : function(){
-          this.bmi = this.mass / (this.height**2);
-          return this.bmi;
-     }
+//continue: it exists the current iteration of  the loop and moves to the next iteration
+// break: exists from the loop entirely
+
+for (let i=1; i<=10; i++){
+     //if(i===5) continue;
+
+     if(i===5) break;
+     console.log(`running ${i} times!`)
 }
 
-if(mark.calcBMI() > john.calcBMI()){
-     console.log(`${mark.firstname} ${mark.lastname}'s BMI (${mark.bmi}) is higher than ${john.firstname} ${john.lastname}'s (${john.bmi})`);
-}else{
-     console.log(`${john.firstname} ${john.lastname}'s BMI (${john.bmi}) is higher than ${mark.firstname} ${mark.lastname}'s (${mark.bmi})`);
+let iteration = 1;
+
+//WHILE LOOP
+// while (iteration <= 10){ 
+//      console.log(`while loop executing ${iteration} times!`)
+
+//      iteration++;
+// }
+
+let dice = Math.trunc(Math.random()*6)+1; 
+console.log(dice);
+
+while (dice !== 6){ 
+     console.log(`dice ${dice}`);
+
+     dice = Math.trunc(Math.random()*6)+1; 
 }
