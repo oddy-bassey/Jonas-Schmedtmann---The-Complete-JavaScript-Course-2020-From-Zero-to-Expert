@@ -1,36 +1,53 @@
-//LOOPS
+//PROBLEM 1
 
-for (let i = 1; i <= 10; i++) {
-  //console.log(`running ${i} times!`)
+const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
+
+function calcAmplitude(temperatures) {
+  let maxValue = temperatures[0];
+  let minValue = temperatures[0];
+
+  for (let i = 0; i < temperatures.length; i++) {
+    const currentTemp = temperatures[i];
+
+    if (typeof currentTemp !== 'number') {
+      continue;
+    }
+
+    if (maxValue < currentTemp) maxValue = currentTemp;
+    if (minValue > currentTemp) minValue = currentTemp;
+  }
+
+  const amplitude = maxValue - minValue;
+
+  return amplitude;
 }
 
-// continue and break stateents
+console.log(calcAmplitude(temperatures));
 
-//continue: it exists the current iteration of  the loop and moves to the next iteration
-// break: exists from the loop entirely
+//PROBLEM 2
 
-for (let i = 1; i <= 10; i++) {
-  //if(i===5) continue;
+function calcAmplitudeNew(t1, t2) {
+  const temperatures = t1.concat(t2);
 
-  if (i === 5) break;
-  console.log(`running ${i} times!`);
+  let maxValue = temperatures[0];
+  let minValue = temperatures[0];
+
+  for (let i = 0; i < temperatures.length; i++) {
+    const currentTemp = temperatures[i];
+
+    if (typeof currentTemp !== 'number') {
+      continue;
+    }
+
+    if (maxValue < currentTemp) maxValue = currentTemp;
+    if (minValue > currentTemp) minValue = currentTemp;
+  }
+
+  const amplitude = maxValue - minValue;
+
+  return amplitude;
 }
 
-let iteration = 1;
-
-//WHILE LOOP
-// while (iteration <= 10){
-//      console.log(`while loop executing ${iteration} times!`)
-
-//      iteration++;
-// }
-
-let dice = Math.trunc(Math.random() * 6) + 1;
-console.log(dice);
-
-while (dice !== 6) {
-  console.log(`dice ${dice}`);
-
-  dice = Math.trunc(Math.random() * 6) + 1;
-}
-const data = (name) => '' + name;
+console.log(
+  calcAmplitudeNew([12, 43, 43, 234, -5, '-32'], [3, 32, 65, 'stroh'])
+);
