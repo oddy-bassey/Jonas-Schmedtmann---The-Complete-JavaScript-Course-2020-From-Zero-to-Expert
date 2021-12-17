@@ -1,53 +1,74 @@
-//PROBLEM 1
+'use strict';
 
-const temperatures = [3, -2, -6, -1, 'error', 9, 13, 17, 15, 14, 9, 5];
+let secreteNumber = generateSecreteNumber();
+let score = 20;
+let highscore = 0;
 
-function calcAmplitude(temperatures) {
-  let maxValue = temperatures[0];
-  let minValue = temperatures[0];
+document.querySelector('.check').addEventListener('click', function () {
+  const guess = Number(document.querySelector('.guess').value);
 
-  for (let i = 0; i < temperatures.length; i++) {
-    const currentTemp = temperatures[i];
-
-    if (typeof currentTemp !== 'number') {
-      continue;
+  console.log(secreteNumber);
+  if (!guess) {
+    document.querySelector('.message').textContent = 'No number!';
+  } else if (secreteNumber === guess) {
+    updateMessage('Correct number!');
+    updateBackgroundColor('#60b347');
+    document.querySelector('.number').style.width = '30rem';
+    document.querySelector('.number').textContent = secreteNumber;
+    updateHighScore(score);
+  } else if (guess > secreteNumber) {
+    if (score > 0) {
+      updateMessage('Too high!');
+      updateScore(--score);
+    } else {
+      updateMessage('You lost the game');
     }
-
-    if (maxValue < currentTemp) maxValue = currentTemp;
-    if (minValue > currentTemp) minValue = currentTemp;
+  } else if (guess < secreteNumber) {
+    if (score > 0) {
+      updateMessage('Too low!');
+      updateScore(--score);
+    } else {
+      updateMessage('You lost the game');
+    }
   }
+});
 
-  const amplitude = maxValue - minValue;
+document.querySelector('.again').addEventListener('click', function () {
+  resetGame();
+});
 
-  return amplitude;
+function updateScore(score) {
+  document.querySelector('.score').textContent = score;
 }
 
-console.log(calcAmplitude(temperatures));
-
-//PROBLEM 2
-
-function calcAmplitudeNew(t1, t2) {
-  const temperatures = t1.concat(t2);
-
-  let maxValue = temperatures[0];
-  let minValue = temperatures[0];
-
-  for (let i = 0; i < temperatures.length; i++) {
-    const currentTemp = temperatures[i];
-
-    if (typeof currentTemp !== 'number') {
-      continue;
-    }
-
-    if (maxValue < currentTemp) maxValue = currentTemp;
-    if (minValue > currentTemp) minValue = currentTemp;
-  }
-
-  const amplitude = maxValue - minValue;
-
-  return amplitude;
+function updateMessage(message) {
+  document.querySelector('.message').textContent = message;
 }
 
-console.log(
-  calcAmplitudeNew([12, 43, 43, 234, -5, '-32'], [3, 32, 65, 'stroh'])
-);
+function updateBackgroundColor(color) {
+  document.querySelector('body').style.backgroundColor = color;
+}
+
+function generateSecreteNumber() {
+  return Math.trunc(Math.random() * 20);
+}
+
+function resetGame() {
+  score = 20;
+  secreteNumber = generateSecreteNumber();
+
+  updateScore(score);
+  updateMessage('start guessing...');
+  updateBackgroundColor('#222');
+
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.number').style.width = '15rem';
+  document.querySelector('.guess').value = '';
+}
+
+function updateHighScore(score) {
+  if (score > highscore) {
+    highscore = score;
+    document.querySelector('.highscore').textContent = score;
+  }
+}
