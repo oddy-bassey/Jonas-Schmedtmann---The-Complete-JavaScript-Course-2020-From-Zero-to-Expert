@@ -1,74 +1,28 @@
 'use strict';
 
-let secreteNumber = generateSecreteNumber();
-let score = 20;
-let highscore = 0;
+const showModalButtons = document.querySelectorAll('.show-modal');
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const closeModalButton = document.querySelector('.close-modal');
 
-document.querySelector('.check').addEventListener('click', function () {
-  const guess = Number(document.querySelector('.guess').value);
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
 
-  console.log(secreteNumber);
-  if (!guess) {
-    document.querySelector('.message').textContent = 'No number!';
-  } else if (secreteNumber === guess) {
-    updateMessage('Correct number!');
-    updateBackgroundColor('#60b347');
-    document.querySelector('.number').style.width = '30rem';
-    document.querySelector('.number').textContent = secreteNumber;
-    updateHighScore(score);
-  } else if (guess > secreteNumber) {
-    if (score > 0) {
-      updateMessage('Too high!');
-      updateScore(--score);
-    } else {
-      updateMessage('You lost the game');
-    }
-  } else if (guess < secreteNumber) {
-    if (score > 0) {
-      updateMessage('Too low!');
-      updateScore(--score);
-    } else {
-      updateMessage('You lost the game');
-    }
-  }
+const openModal = function () {
+  modal.classList.remove('hidden');
+  overlay.classList.remove('hidden');
+};
+
+for (let i = 0; i < showModalButtons.length; i++) {
+  showModalButtons[i].addEventListener('click', openModal);
+}
+
+closeModalButton.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
+
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape' && !modal.classList.contains('hidden'))
+    closeModal();
 });
-
-document.querySelector('.again').addEventListener('click', function () {
-  resetGame();
-});
-
-function updateScore(score) {
-  document.querySelector('.score').textContent = score;
-}
-
-function updateMessage(message) {
-  document.querySelector('.message').textContent = message;
-}
-
-function updateBackgroundColor(color) {
-  document.querySelector('body').style.backgroundColor = color;
-}
-
-function generateSecreteNumber() {
-  return Math.trunc(Math.random() * 20);
-}
-
-function resetGame() {
-  score = 20;
-  secreteNumber = generateSecreteNumber();
-
-  updateScore(score);
-  updateMessage('start guessing...');
-  updateBackgroundColor('#222');
-
-  document.querySelector('.number').textContent = '?';
-  document.querySelector('.number').style.width = '15rem';
-  document.querySelector('.guess').value = '';
-}
-
-function updateHighScore(score) {
-  if (score > highscore) {
-    highscore = score;
-    document.querySelector('.highscore').textContent = score;
-  }
-}
