@@ -36,9 +36,6 @@ const restraunt = {
       `${this.startMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
-  orderPasta: function (ing1, ing2, ing3) {
-    console.log(`Here is your pasta ${ing1}, ${ing2} and ${ing3}`);
-  },
 };
 
 const arr = [3, 4, 5, 6];
@@ -59,19 +56,36 @@ const mainMenuCopy = [...restraunt.mainMenu];
 const menu = [...restraunt.mainMenu, ...restraunt.startMenu];
 console.log(mainMenuCopy, menu);
 
-//Iterables: arrays, strings, maps, sets
+// Iterables: arrays, strings, maps, sets
 const name = 'Oddy Bassey';
 const letters = [...name];
 console.log(letters);
 
-const ingredients = [
-  prompt("Let's make pasta! Ingredient 1?"),
-  prompt('Ingredient 2?'),
-  prompt('Ingredient 3?'),
-];
-
-//restraunt.orderPasta(...ingredients);
-
 // creating a shallow copy of the object
 const restrauntCopy = { ...restraunt };
 console.log(restrauntCopy);
+
+// Rest pattern, because on left side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5, 6];
+console.log(a, b, others);
+
+const [pizza, risoto, ...otherFood] = [
+  ...restraunt.mainMenu,
+  ...restraunt.startMenu,
+];
+
+console.log(pizza, risoto, otherFood);
+
+const { sat, ...weekDays } = restraunt.openningHours;
+console.log(sat, weekDays);
+
+const add = function (...numbers) {
+  // (...numbers) -> rest parameter
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+
+  console.log(`total sum ${sum}`);
+};
+
+const x = [3, 6, 7, 4, 7, 3, 54, 332];
+add(...x);
