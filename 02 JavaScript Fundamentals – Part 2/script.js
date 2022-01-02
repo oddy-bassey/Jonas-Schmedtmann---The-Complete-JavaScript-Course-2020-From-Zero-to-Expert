@@ -1,11 +1,5 @@
 'use strict';
 
-const arr = [21, 32, , 43];
-console.log(arr);
-
-const [x, y, z] = arr;
-console.log(x, y, x);
-
 const restraunt = {
   name: 'African cousine',
   location: 'Akwa-Ibom',
@@ -42,65 +36,42 @@ const restraunt = {
       `${this.startMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta ${ing1}, ${ing2} and ${ing3}`);
+  },
 };
 
-restraunt.orderDelivery({
-  time: '22:30',
-  address: 'Via del sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+const arr = [3, 4, 5, 6];
+const newArr = [2, 2, ...arr];
 
-/*
-//destructuring arrays
-let [cat1, , cat2] = restraunt.categories;
-console.log(cat1, cat2);
+console.log(newArr);
+console.log(...newArr);
 
-//swapping during destructuring
-[cat1, , cat2] = [cat2, , cat1];
-console.log(cat1, cat2);
+const newMenu = [...restraunt.mainMenu, 'epkankukwo'];
+console.log(newMenu);
 
-const [starterMeal, mainMeal] = restraunt.order(2, 0);
-console.log(starterMeal, mainMeal);
+// USES OF SPREAD OPERATOR
 
-//destructuring nested array
-const nested = [2, 4, [5, 6]];
-const [i, , j] = nested;
+// copy array (shallow copy)
+const mainMenuCopy = [...restraunt.mainMenu];
 
-console.log(i, j);
+// merge arrays
+const menu = [...restraunt.mainMenu, ...restraunt.startMenu];
+console.log(mainMenuCopy, menu);
 
-const [k, l, [m, n]] = nested;
-console.log(k, l, m, n);
+//Iterables: arrays, strings, maps, sets
+const name = 'Oddy Bassey';
+const letters = [...name];
+console.log(letters);
 
-//deafault values
-const [p = 1, q = 1, r = 1] = [9, 8]; //assigning default value
-console.log(p, q, r);
+const ingredients = [
+  prompt("Let's make pasta! Ingredient 1?"),
+  prompt('Ingredient 2?'),
+  prompt('Ingredient 3?'),
+];
 
-//destructuring objects
-const { name, openningHours, categories } = restraunt;
-console.log(name, openningHours, categories);
+//restraunt.orderPasta(...ingredients);
 
-const {
-  name: restrauntName,
-  openningHours: hours,
-  categories: tags,
-  menu = [], //assigning default value
-} = restraunt;
-console.log(restrauntName, hours, tags, menu);
-
-// mutating variables
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 2, c: 14 };
-({ a, b } = obj);
-
-console.log(a, b);
-
-// nested objects
-const { fri } = hours;
-console.log(fri);
-
-const {
-  fri: { open: o, close: c },
-} = hours;
-console.log(o, c); */
+// creating a shallow copy of the object
+const restrauntCopy = { ...restraunt };
+console.log(restrauntCopy);
