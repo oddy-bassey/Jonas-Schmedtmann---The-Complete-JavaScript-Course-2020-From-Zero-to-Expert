@@ -49,3 +49,7 @@ console.log(guest);
 
 // AND operator: short circuits when the first value is false (returns the first falsy value)
 console.log(1 && 'jonas');
+
+// Nullish Coalescing operator (??): works with null and undefined
+const guest2 = restraunt.numAgents ?? 15;
+console.log(guest2);
