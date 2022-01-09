@@ -1,55 +1,72 @@
-'use strict';
+'strict-mode';
 
-const restraunt = {
-  name: 'African cousine',
-  location: 'Akwa-Ibom',
-  categories: ['ibibio', 'igbo', 'hausa', 'yoruba', 'efik '],
-  startMenu: [
-    'rice',
-    'affang',
-    'chinkafa',
-    'akamu',
-    'beans',
-    'ogbono',
-    'salad',
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
   ],
-  mainMenu: ['jolof', 'moi moi', 'palm cake', 'wine'],
-  openningHours: {
-    thu: {
-      open: 12,
-      close: 22,
-    },
-    fri: {
-      open: 11,
-      close: 23,
-    },
-    sat: {
-      open: 0,
-      close: 24,
-    },
-  },
-  order: function (startIndex, mainIndex) {
-    return [this.startMenu[startIndex], this.mainMenu[mainIndex]];
-  },
-  orderDelivery: function ({ time, address, mainIndex, starterIndex }) {
-    console.log(
-      `${this.startMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-    );
-  },
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: { team1: 1.33, x: 3.25, team2: 6.5 },
 };
 
-// SHORT CIRCUITING
+// question 1
+const [player1, player2] = game.players;
 
-// OR operator: short circuits when the first value is true (returns the first truity value)
-console.log(undefined || 'jonas');
-console.log(undefined || 'jonas' || 0 || 1 || true);
+console.log(player1, player2);
 
-const guest = restraunt.numGuests || 10;
-console.log(guest);
+// question 2
+const [gk, ...fieldPlayers] = player1;
 
-// AND operator: short circuits when the first value is false (returns the first falsy value)
-console.log(1 && 'jonas');
+console.log(gk, fieldPlayers);
 
-// Nullish Coalescing operator (??): works with null and undefined
-const guest2 = restraunt.numAgents ?? 15;
-console.log(guest2);
+// question 3
+const allPlayers = [...player1, ...player2];
+console.log(allPlayers);
+
+// question 4
+const player1Final = [...player1, 'Thiago', 'Coutinho', 'Perisic'];
+console.log(player1Final);
+
+// question 5
+// const { odds: { team1, x: draw, team2 }} = game;
+const { team1, x: draw, team2 } = game.odds;
+console.log(team1, draw, team2);
+
+// question 6
+const printGoals = (...players) => {
+  console.log(...players, `Gaols scored ${players.length}`);
+};
+printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+printGoals(...game.scored);
+
+// question 7
+team1 < team2 && console.log('Team1 is likely to win');
+team1 > team2 && console.log('Team2 is likely to win');
