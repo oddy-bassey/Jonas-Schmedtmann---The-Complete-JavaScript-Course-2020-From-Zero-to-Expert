@@ -28,24 +28,24 @@ const restaurant = {
   },
 };
 
-// Optional chaining operator
+// object properties || keys
+const properties = Object.keys(restaurant.openingHours);
 
-// on Parameters
-console.log(restaurant.openingHours?.sun);
-console.log(restaurant.openingHours.sun?.open);
-
-const days = ['mon', 'teus', 'wed', 'thurs', 'fri', 'sat'];
-
-for (const day of days) {
-  const open = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`On ${day}, we open at ${open}`);
+let openStr = `we are open on ${properties.length} days: `;
+for (const day of properties) {
+  openStr += `${day},`;
 }
+console.log(openStr);
 
-// on Methods
-console.log(restaurant.order?.(0, 1) ?? 'method does not exist');
-console.log(restaurant.orderPie?.(0, 1) ?? 'method does not exist');
+// property values
+const values = Object.values(restaurant.openingHours);
+console.log(values);
 
-// Arrays
-const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
-console.log(users[0]?.name ?? 'user does not exist');
-console.log(users[1]?.name ?? 'user does not exist');
+// entire object || entries
+const entries = Object.entries(restaurant.openingHours);
+console.log(entries);
+
+// [key, value]
+for (const [key, { open, close }] of entries) {
+  console.log(`on ${key} we open at ${open} and close at ${close}`);
+}
