@@ -1,49 +1,51 @@
 'use strict';
 
-// Enhanced object literals
+// Data needed for first part of the section
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-const players = [
-  [
-    'Neuer',
-    'Pavard',
-    'Martinez',
-    'Alaba',
-    'Davies',
-    'Kimmich',
-    'Goretzka',
-    'Coman',
-    'Muller',
-    'Gnarby',
-    'Lewandowski',
-  ],
-  [
-    'Burki',
-    'Schulz',
-    'Hummels',
-    'Akanji',
-    'Hakimi',
-    'Weigl',
-    'Witsel',
-    'Hazard',
-    'Brandt',
-    'Sancho',
-    'Gotze',
-  ],
-];
+  openingHours: {
+    thurs: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
 
-const teams = ['team1', 'team2'];
-
-const game = {
-  [teams[0]]: 'Bayern Munich', // computing property names using destructuring
-  [`team${1 + 1}`]: 'Borrussia Dortmund', // computing property names using string combination and math operations
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  players, // defining object property using variable
-  odds: { team1: 1.33, x: 3.25, team2: 6.5 },
-
-  //defining object funtion using simple method declaration pattern
-  teamInfo() {
-    console.log(`we have ${this.team1} & ${this.team2} present!`);
+  order(startIndex, mainIndex) {
+    return [this.starterMenu[startIndex], this.mainMenu[mainIndex]];
   },
 };
+
+// Optional chaining operator
+
+// on Parameters
+console.log(restaurant.openingHours?.sun);
+console.log(restaurant.openingHours.sun?.open);
+
+const days = ['mon', 'teus', 'wed', 'thurs', 'fri', 'sat'];
+
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
+
+// on Methods
+console.log(restaurant.order?.(0, 1) ?? 'method does not exist');
+console.log(restaurant.orderPie?.(0, 1) ?? 'method does not exist');
+
+// Arrays
+const users = [{ name: 'Jonas', email: 'hello@jonas.io' }];
+console.log(users[0]?.name ?? 'user does not exist');
+console.log(users[1]?.name ?? 'user does not exist');
