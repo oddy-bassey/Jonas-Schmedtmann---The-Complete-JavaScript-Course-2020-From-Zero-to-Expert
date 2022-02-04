@@ -1,26 +1,35 @@
 'use strict';
 
-// Sets
+// Map
 
-const ordersSet = new Set([
-  'pasta',
-  'pitza',
-  'resoto',
-  'pasta',
-  'pitza',
-  'resoto',
-]);
+// NOTE: The data type of the keys is important
+const rest = new Map();
+rest.set('name', 'Classico Italino');
+rest.set(1, 'Firenze, Italy');
+console.log(rest.set(2, 'Lisbon, Portugal'));
 
-console.log(ordersSet);
-console.log(new Set('Jonas'));
-console.log(ordersSet.size); // set size
-console.log(ordersSet.has('pitza')); // checking if set has||contains a value
-console.log(ordersSet.add('rice')); // adding to a set
-console.log(ordersSet.delete('resoto')); // deleting from a set
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Oraganic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open :D')
+  .set(false, 'We are closed :(');
 
-const staff = ['waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Manager'];
-const uniqueStaff = new Set(staff); // creating a set of unique staffs
-const staffs = [...new Set(staff)]; // creating an array of unique staffs
-console.log(uniqueStaff, staffs);
+console.log(rest.get('open'));
+console.log(rest.get('close'));
 
-console.log(new Set('Jonasschmedtmann').size);
+const time = 21;
+console.log(rest.get(time > rest.get('open' && time < rest.get('closed'))));
+
+console.log(rest.has('categories'));
+console.log(rest.delete(true));
+
+rest.clear();
+
+const arr = [1, 2];
+rest.set(arr, 'Test');
+
+console.log(rest.get(arr));
+console.log(rest.set(document.querySelector('h1'), 'Heading'));
+console.log(rest);
+console.log(rest.size);
