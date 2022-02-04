@@ -1,64 +1,26 @@
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: { team1: 1.33, x: 3.25, team2: 6.5 },
-};
+'use strict';
 
-// Question 1
-for (const [goal, player] of game.scored.entries()) {
-  console.log(`${player} goal ${goal + 1}`);
-}
+// Sets
 
-// Question 2
-let totalOdd = 0;
-const oddValues = Object.values(game.odds);
-for (const odd of oddValues) {
-  totalOdd += odd;
-}
-const averageOdd = totalOdd / oddValues.length;
-console.log(`Average odd is ${averageOdd}`);
+const ordersSet = new Set([
+  'pasta',
+  'pitza',
+  'resoto',
+  'pasta',
+  'pitza',
+  'resoto',
+]);
 
-// Question 3
-const oddEntries = Object.entries(game.odds);
-for (const [team, odd] of oddEntries) {
-  let clause = team === 'x' ? 'draw' : `${game[team]} victory`;
-  console.log(`Odd of  ${clause} ${odd}`);
-}
+console.log(ordersSet);
+console.log(new Set('Jonas'));
+console.log(ordersSet.size); // set size
+console.log(ordersSet.has('pitza')); // checking if set has||contains a value
+console.log(ordersSet.add('rice')); // adding to a set
+console.log(ordersSet.delete('resoto')); // deleting from a set
 
-// Bonus question
-const scorers = {};
-for (const player of game.scored) {
-  scorers[player] ? scorers[player]++ : (scorers[player] = 1);
-}
-console.log(scorers);
+const staff = ['waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Manager'];
+const uniqueStaff = new Set(staff); // creating a set of unique staffs
+const staffs = [...new Set(staff)]; // creating an array of unique staffs
+console.log(uniqueStaff, staffs);
+
+console.log(new Set('Jonasschmedtmann').size);
