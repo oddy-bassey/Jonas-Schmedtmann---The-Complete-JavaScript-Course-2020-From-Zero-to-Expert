@@ -2,34 +2,23 @@
 
 // Map
 
-// NOTE: The data type of the keys is important
-const rest = new Map();
-rest.set('name', 'Classico Italino');
-rest.set(1, 'Firenze, Italy');
-console.log(rest.set(2, 'Lisbon, Portugal'));
+const question = new Map([
+  ['Question', 'what is the best programing language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'Javascript'],
+  ['Correct', 3],
+  [true, 'Correct'],
+  [false, 'Try Again'],
+]);
+console.log(question);
 
-rest
-  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Oraganic'])
-  .set('open', 11)
-  .set('close', 23)
-  .set(true, 'We are open :D')
-  .set(false, 'We are closed :(');
+// converting objects to Maps
+const person = {
+  name: 'Jonas',
+  age: 31,
+  profession: 'Software Developer',
+};
 
-console.log(rest.get('open'));
-console.log(rest.get('close'));
-
-const time = 21;
-console.log(rest.get(time > rest.get('open' && time < rest.get('closed'))));
-
-console.log(rest.has('categories'));
-console.log(rest.delete(true));
-
-rest.clear();
-
-const arr = [1, 2];
-rest.set(arr, 'Test');
-
-console.log(rest.get(arr));
-console.log(rest.set(document.querySelector('h1'), 'Heading'));
-console.log(rest);
-console.log(rest.size);
+const personMap = new Map(Object.entries(person));
+console.log(personMap);
