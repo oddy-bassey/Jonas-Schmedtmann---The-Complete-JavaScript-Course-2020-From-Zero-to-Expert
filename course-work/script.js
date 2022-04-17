@@ -18,11 +18,16 @@ const greet = function(greeting){
 }*/
 
 // re-writing the above function (greet) using arrow functions
+
+/*
 const greet = (greeting) => {
     return (name) => {
         console.log(`${greeting} 😉 ${name}`);
     }
-}
+}*/
+
+// OR
+const greet = greeting => name => console.log(`${greeting} 😉 ${name}`);
 
 const greeter = greet('Hey');
 greeter('Oddy');
