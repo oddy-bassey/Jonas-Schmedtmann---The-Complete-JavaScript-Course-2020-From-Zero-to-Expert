@@ -1,28 +1,36 @@
 'use strict'
 
-const bookings = [];
-
-const createBooking = function(flightNum, numPassengers=1, price=50*numPassengers){
-
-    const booking = {
-        flightNum,
-        numPassengers,
-        price
-    }
-
-    console.log(booking);
-    bookings.push(booking);
-}
-
-createBooking('LH124', 34);
-createBooking('LH126', 2);
-createBooking('LH128', 6);
-
-/* Note:
- * function parameters cannot be skipped.
- * so if u intend to skip a parameter inorder to allow its default value then 
- * a wa to achieve this is to pass an 'Undefined' value which is the same as
- * passing nothing.
+/*
+ * NOTE: JavaScript do not support 'pass by reference', it only supports 'pass 
+ * by value'. Although objects here seems to be passed by reference, actually
+ * we're only passing the object reference but not actually 'passing by reference'.
 */
 
-createBooking('LH128', undefined, 20);
+const flightNum = 'LH254';
+
+const jonas = {
+    name : 'Jonas Schemdtman',
+    passport : 2345678989
+}
+
+const checkIn = function(flight, passenger){
+    flight = 'LH999';
+    passenger.name = 'Mr. '+passenger.name;
+
+    if(passenger.passport === 2345678989){
+        alert('Check in');
+    }else{
+        alert('Wrong passport!');
+    }
+}
+
+checkIn(flightNum, jonas);
+console.log(flightNum);
+console.log(jonas);
+
+const newPassport = function(person){
+    person.passport = Math.trunc(Math.random() * 100000000000)
+}
+
+newPassport(jonas);
+checkIn(flightNum, jonas);
