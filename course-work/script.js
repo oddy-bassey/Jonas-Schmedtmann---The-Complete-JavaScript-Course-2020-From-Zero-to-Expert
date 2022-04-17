@@ -10,29 +10,23 @@
  * a function or returns a funtion
 */
 
-const oneWord = function(word){
-    return word.replace(/ /g, '').toLowerCase();
+/*
+const greet = function(greeting){
+    return function(name){
+        console.log(`${greeting} 😉 ${name}`);
+    }
+}*/
+
+// re-writing the above function (greet) using arrow functions
+const greet = (greeting) => {
+    return (name) => {
+        console.log(`${greeting} 😉 ${name}`);
+    }
 }
 
-const upperFirstWord = function(word){
-    const [first, ...others] = word.split(' ');
-    return [first.toUpperCase(), ...others].join(' ');
-}
+const greeter = greet('Hey');
+greeter('Oddy');
+greeter('Etap');
+greeter('Danny');
 
-// Higher-order function
-const transformer = function(word, fn){
-    console.log(word);
-    console.log(`Transformed string: ${fn(word)}`);
-
-    console.log(`Transformed by: ${fn.name}`);
-}
-
-transformer('Javascript is the best', upperFirstWord);
-transformer('Javascript is the best', oneWord);
-
-// JS uses call-backs all the time
-const high5 = function(word='hello'){
-    console.log(word+' 👋');
-}
-document.body.addEventListener('click', high5);
-['jonas', 'Martha', 'Adam'].forEach(high5);
+greet('Hello') ('Banky');
