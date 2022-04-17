@@ -1,53 +1,28 @@
 'use strict'
 
-// coding challenge #4 
-/*
-Write a program that receives a list of variable names written in underscore_case
-and convert them to camelCase.
-The input will come from a textarea inserted into the DOM (see code below to
-insert the elements), and conversion will happen when the button is pressed.
+const bookings = [];
 
-Test data (pasted to textarea, including spaces):
-underscore_case
-first_name
-Some_Variable
- calculate_AGE
-delayed_departure
+const createBooking = function(flightNum, numPassengers=1, price=50*numPassengers){
 
-Should produce this output (5 separate console.log outputs):
-underscoreCase ✅
-firstName ✅✅
-someVariable ✅✅✅
-calculateAge ✅✅✅✅
-delayedDeparture ✅✅✅✅✅
-
-Hints:
-§ Remember which character defines a new line in the textarea �
-§ The solution only needs to work for a variable made out of 2 words, like a_b
-§ Start without worrying about the ✅. Tackle that only after you have the variable
-name conversion working �
-§ This challenge is difficult on purpose, so start watching the solution in case
-you're stuck. Then pause and continue!
-*/
-
-const convertToCamelCase = function(names){
-    const camelcaseNames = [];
-    for(const name of names){
-        const [firstName, lastName] = name.toLowerCase().trim().split('_');
-        const output = firstName+lastName[0].toUpperCase()+lastName.slice(1);
-
-        camelcaseNames.push(output.padEnd(20, ' ')+'✅'.repeat(names.indexOf(name)+1));
+    const booking = {
+        flightNum,
+        numPassengers,
+        price
     }
 
-    return camelcaseNames;
+    console.log(booking);
+    bookings.push(booking);
 }
 
-document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button'));
+createBooking('LH124', 34);
+createBooking('LH126', 2);
+createBooking('LH128', 6);
 
-document.querySelector('button').addEventListener('click', function(){
-    const text = document.querySelector('textarea').value;
-    const data = text.split('\n');
+/* Note:
+ * function parameters cannot be skipped.
+ * so if u intend to skip a parameter inorder to allow its default value then 
+ * a wa to achieve this is to pass an 'Undefined' value which is the same as
+ * passing nothing.
+*/
 
-    console.log(convertToCamelCase(data));
-});
+createBooking('LH128', undefined, 20);
