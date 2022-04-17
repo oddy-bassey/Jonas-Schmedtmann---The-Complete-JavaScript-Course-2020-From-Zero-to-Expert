@@ -1,36 +1,38 @@
 'use strict'
 
 /*
- * NOTE: JavaScript do not support 'pass by reference', it only supports 'pass 
- * by value'. Although objects here seems to be passed by reference, actually
- * we're only passing the object reference but not actually 'passing by reference'.
+ * NOTE: 
+ * 
+ * First Class Functions: this is simply a concept that functions are
+ * values or other object types'
+ * 
+ * Higher Order Functions: these are functions that receive as parameter
+ * a function or returns a funtion
 */
 
-const flightNum = 'LH254';
-
-const jonas = {
-    name : 'Jonas Schemdtman',
-    passport : 2345678989
+const oneWord = function(word){
+    return word.replace(/ /g, '').toLowerCase();
 }
 
-const checkIn = function(flight, passenger){
-    flight = 'LH999';
-    passenger.name = 'Mr. '+passenger.name;
-
-    if(passenger.passport === 2345678989){
-        alert('Check in');
-    }else{
-        alert('Wrong passport!');
-    }
+const upperFirstWord = function(word){
+    const [first, ...others] = word.split(' ');
+    return [first.toUpperCase(), ...others].join(' ');
 }
 
-checkIn(flightNum, jonas);
-console.log(flightNum);
-console.log(jonas);
+// Higher-order function
+const transformer = function(word, fn){
+    console.log(word);
+    console.log(`Transformed string: ${fn(word)}`);
 
-const newPassport = function(person){
-    person.passport = Math.trunc(Math.random() * 100000000000)
+    console.log(`Transformed by: ${fn.name}`);
 }
 
-newPassport(jonas);
-checkIn(flightNum, jonas);
+transformer('Javascript is the best', upperFirstWord);
+transformer('Javascript is the best', oneWord);
+
+// JS uses call-backs all the time
+const high5 = function(word='hello'){
+    console.log(word+' 👋');
+}
+document.body.addEventListener('click', high5);
+['jonas', 'Martha', 'Adam'].forEach(high5);
