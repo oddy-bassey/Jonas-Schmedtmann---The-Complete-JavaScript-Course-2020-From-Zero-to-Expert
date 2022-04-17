@@ -1,120 +1,53 @@
 'use strict'
 
-const airline = 'TAP Air Portugal';
-const plane = 'A320';
+// coding challenge #4 
+/*
+Write a program that receives a list of variable names written in underscore_case
+and convert them to camelCase.
+The input will come from a textarea inserted into the DOM (see code below to
+insert the elements), and conversion will happen when the button is pressed.
 
-console.log(plane[0]);
-console.log(plane[1]);
-console.log(plane[2]);
-console.log('A310'[2]);
+Test data (pasted to textarea, including spaces):
+underscore_case
+first_name
+Some_Variable
+ calculate_AGE
+delayed_departure
 
-console.log(airline.length);
-console.log(plane.length);
+Should produce this output (5 separate console.log outputs):
+underscoreCase ✅
+firstName ✅✅
+someVariable ✅✅✅
+calculateAge ✅✅✅✅
+delayedDeparture ✅✅✅✅✅
 
-console.log(airline.indexOf('r'));
-console.log(airline.lastIndexOf('r'));
-console.log(airline.indexOf('Portugal'));
+Hints:
+§ Remember which character defines a new line in the textarea �
+§ The solution only needs to work for a variable made out of 2 words, like a_b
+§ Start without worrying about the ✅. Tackle that only after you have the variable
+name conversion working �
+§ This challenge is difficult on purpose, so start watching the solution in case
+you're stuck. Then pause and continue!
+*/
 
-console.log(airline.slice(4));
-console.log(airline.slice(4, 7));
-console.log(airline.slice(0, airline.indexOf(' ')));
-console.log(airline.slice(airline.lastIndexOf(' ')+1));
+const convertToCamelCase = function(names){
+    const camelcaseNames = [];
+    for(const name of names){
+        const [firstName, lastName] = name.toLowerCase().trim().split('_');
+        const output = firstName+lastName[0].toUpperCase()+lastName.slice(1);
 
-console.log(airline.slice(-2));
-console.log(airline.slice(1, -1));
-
-const checkMiddleSeat = function(seat){
-    // B and E are middle seats
-    const s = seat.slice(-1);
-    if(s === 'B' || s === 'E')
-        console.log('You got the middle seat');
-    else
-        console.log('You got lucky');
-}
-
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
-
-console.log(airline.toLowerCase());
-console.log(airline.toUpperCase());
-
-// Fix capitalization in name
-const fixName = function(name){
-    const lowercaseName = name.toLowerCase();
-    const correctName = lowercaseName[0].toUpperCase() + lowercaseName.slice(1);
-
-    return correctName;
-}
-
-const passenger = fixName('jOnAs');
-console.log(passenger);
-
-// Comparing Emails
-const compareEmail = function(correctEmail, email){
-    const normalizedEmail = email.toLowerCase().trim();
-
-    console.log(normalizedEmail);
-    return email === correctEmail;
-}
-
-const email = 'hello@jonas.io';
-const loginEmail = ' Hello@Jonas.Io \n';
-
-compareEmail(email, loginEmail);
-
-// replacing parts of strings
-const priceGB = '288,97E';
-const priceUS = priceGB.replace('E', '$').replace(',', '.');
-console.log(priceUS);
-
-const announcement = 'All passengers come to boarding door 23. Boarding door 23!';
-//console.log(announcement.replace('door', 'gate')); // replaces only the first occurence of the word to be replaced
-//console.log(announcement.replace(/door/g, 'gate')); // replaces all the occurences of the word to be replaced
-console.log(announcement.replaceAll('door', 'gate')); // replaces all the occurences of the word to be replaced
-
-// Booleans
-const airBusPlane = 'A320neo';
-console.log(airBusPlane.includes('A320'));
-console.log(airBusPlane.includes('Boeng'));
-console.log(airBusPlane.startsWith('Airb'));
-console.log(airBusPlane.endsWith('neo'));
-
-// splitting strings
-console.log('a+very+nice+string'.split('+'));
-console.log('Jonas Schmedtmann'.split(' '));
-
-const [firstName, lastName] = 'Jonas Schmedtmann'.split(' ');
-const newName = ['Mr', fixName(firstName), fixName(lastName)].join(' ');
-console.log(newName);
-
-const capitalizeName = function(name){
-    const names = name.split(' ');
-    const uppercaseNames = [];
-    
-    for(const n of names){
-        uppercaseNames.push(n[0].toUpperCase() + n.slice(1));
+        camelcaseNames.push(output.padEnd(20, ' ')+'✅'.repeat(names.indexOf(name)+1));
     }
 
-    return uppercaseNames.join(' ');
+    return camelcaseNames;
 }
 
-console.log(capitalizeName('jessica ann smith davies'));
-console.log(capitalizeName('jonas schmedtmann')); 
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
 
-// padding
-console.log('Go to gate 23!'.padStart(20, '+').padEnd(25, '#'));
-console.log('Jonas'.padStart(15, '-').padEnd(20,'*'));
+document.querySelector('button').addEventListener('click', function(){
+    const text = document.querySelector('textarea').value;
+    const data = text.split('\n');
 
-// example: masking a cedit card string
-const maskCreditCard = function(number){
-    const str = String(number);
-
-    return str.slice(-4).padStart(16, '*');
-}
-
-console.log(maskCreditCard(1234567898765432));
-console.log(maskCreditCard(1294839898764098));
-
-// repeat
-console.log('Success ahead!\n'.repeat(3));
+    console.log(convertToCamelCase(data));
+});
