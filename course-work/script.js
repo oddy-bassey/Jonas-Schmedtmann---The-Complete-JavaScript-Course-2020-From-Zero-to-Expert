@@ -27,12 +27,12 @@ const book = lufthansa.book;
 // Does not work
 // book(23, 'Sarah Williams')
 
-/*
+/* Call method
+ *
  * using call, apply & bind method to explicitly define the "this" keyword
  * in any function that we want
-*/
+ */
 
-// Call method
 book.call(eurowings, 345, 'Sarah Williams')
 console.log(eurowings);
 
@@ -48,18 +48,24 @@ const swiss = {
 book.call(swiss, 599, "Mary Swagger");
 console.log(swiss);
 
-// Apply method 
-// this isn't used anymore in modern JS because there's a better way of doing the exact same thing (using call method)
+/* Apply method
+ * 
+ * this isn't used anymore in modern JS because there's a better way of doing the exact
+ * same thing (using call method)
+ */
+
 const flightData = [577, "George copper"];
 book.apply(swiss, flightData);
 console.log(swiss);
 
 book.call(swiss, ...flightData);
 
-// Bind method
-/* NOTE: "bind" does not immediately call the function, instead it returns a new function where the "this" keyword is bound
+/* Bind method
+ *
+ * NOTE: "bind" does not immediately call the function, instead it returns a new function
+ * where the "this" keyword is bound
  * It is set to whatever value we pass
-*/
+ */
 
 const bookEW = book.bind(eurowings);
 const bookLH = book.bind(lufthansa);
