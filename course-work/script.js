@@ -1,109 +1,67 @@
 'use strict'
-
-const lufthansa = {
-    airline : 'Lufthansa',
-    iataCode : 'LH',
-    bookings : [],
-    book(flightNum, name){
-        console.log(`${name} booked a seat on ${this.airline} flight 
-            ${this.iataCode}${flightNum}`);
-
-        this.bookings.push({flight : `${this.iataCode}${flightNum}`, name});
-    }
-}
-
-lufthansa.book(235, 'Jonas Schmedtmann');
-lufthansa.book(567, 'Jonas Smith');
-console.log(lufthansa);
-
-const eurowings = {
-    airline : "Eurowings",
-    iataCode : 'EW',
-    bookings: [],
-};
-
-const book = lufthansa.book;
-
-// Does not work
-// book(23, 'Sarah Williams')
-
-/* Call method
- *
- * using call, apply & bind method to explicitly define the "this" keyword
- * in any function that we want
- */
-
-book.call(eurowings, 345, 'Sarah Williams')
-console.log(eurowings);
-
-book.call(lufthansa, 555, 'Abu Dhabi')
-console.log(lufthansa);
-
-const swiss = {
-    airline : "Swiss Airlines",
-    iataCode : 'LX',
-    bookings: [],
-}
-
-book.call(swiss, 599, "Mary Swagger");
-console.log(swiss);
-
-/* Apply method
+/* 
+ * Let's build a simple poll app!
+ * A poll has a question, an array of options from which people can choose, and an
+ * array with the number of replies for each option. This data is stored in the starter
+ * 'poll' object below.
+ * Your tasks:
+ * 1. Create a method called 'registerNewAnswer' on the 'poll' object. The
+ * method does 2 things:
  * 
- * this isn't used anymore in modern JS because there's a better way of doing the exact
- * same thing (using call method)
- */
-
-const flightData = [577, "George copper"];
-book.apply(swiss, flightData);
-console.log(swiss);
-
-book.call(swiss, ...flightData);
-
-/* Bind method
- *
- * NOTE: "bind" does not immediately call the function, instead it returns a new function
- * where the "this" keyword is bound
- * It is set to whatever value we pass
- */
-
-const bookEW = book.bind(eurowings);
-const bookLH = book.bind(lufthansa);
-const bookLX = book.bind(swiss);
-
-bookEW(23, "Steven Williams");
-bookLH(23, "Mark Hendry");
-bookLX(23, "Judge Trump");
-
-/* set in stone certain function arguements
- * Note: setting parts of the arguement before hand is also known as partial application
+ * 1.1.
+ *  Display a prompt window for the user to input the number of the
+ *  selected option. The prompt should look like this:
+ *  What is your favourite programming language?
+ *  0: JavaScript
+ *  1: Python
+ *  2: Rust
+ *  3: C++
+ *  (Write option number)
+ * 1.2.
+ *  Based on the input number, update the 'answers' array property. For
+ *  example, if the option is 3, increase the value at position 3 of the array by
+ * 1. Make sure to check if the input is a number and if the number makes
+ *   sense (e.g. answer 52 wouldn't make sense, right?)
+ * 2.Call this method whenever the user clicks the "Answer poll" button.
+ * 3.Create a method 'displayResults' which displays the poll results. The
+ *   method takes a string as an input (called 'type'), which can be either 'string'
+ *   or 'array'. If type is 'array', simply display the results array as it is, using
+ *   console.log(). This should be the default option. If type is 'string', display a
+ *   string like "Poll results are 13, 2, 4, 1".
+ * 4.Run the 'displayResults' method at the end of each
+ *   'registerNewAnswer' method call.
+ * 5.Bonus: Use the 'displayResults' method to display the 2 arrays in the test
+ *   data. Use both the 'array' and the 'string' option. Do not put the arrays in the poll
+ *   object! So what should the this keyword look like in this situation?
 */
-const bookEW23 = book.bind(eurowings, 77);
-bookEW23("Richard Crosbie");
 
-// other situations where the bind method is used: with Event Listeners
-lufthansa.planes = 300;
-lufthansa.buyPlane = function(){
-    console.log(this);
-    this.planes++;
-    console.log(this.planes);
-}
+const poll = {
+    question: "What is your favourite programming language?",
+    options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
+    // This generates [0, 0, 0, 0]. More in the next section!
+    answers: new Array(4).fill(0),
+    registerNewAnswer : function () {
+        const value = window.prompt(this.question);
+        if (!isNaN(value) && value >= 0 && value < this.answers.length) {
+                this.answers[value]++;
+        }else{
+            window.alert(`The value entered: ${value} is  invalid`);
+        }
 
-lufthansa.buyPlane();
-document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+        this.displayResults(this.answers);
+        this.displayResults(this.answers.join(','));
+    },
+    displayResults : function (result) {
+        if (Array.isArray(result)) {
+            console.log(result);
+        }else {
+            console.log(`Poll results are ${result}`);
+        }
+    }
+    };
 
-// other situations where the bind method is used: Partial application
-const addTax = (rate, value) => value + value * rate;
-console.log(addTax(0.1, 200));
-
-// or
-const addVatTax = addTax.bind(null, 0.1);
-console.log(addVatTax(220));
-
-// challenge: write a function that returns a function like the addVatTax 
-function addTaxRate(rate){
-    return (value) => value + value * rate;
-}
-
-const addVat2 = addTaxRate(0.1);
-console.log(addVat2(200));
+    const runPolls = poll.registerNewAnswer.bind(poll);
+    const pollButton = document.getElementsByClassName('poll');
+    console.log(pollButton);
+    pollButton[0].addEventListener("click", runPolls)
+    
