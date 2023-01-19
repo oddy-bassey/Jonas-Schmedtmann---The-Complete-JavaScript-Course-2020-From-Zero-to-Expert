@@ -37,31 +37,28 @@
 
 const poll = {
     question: "What is your favourite programming language?",
-    options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
+    options: ["0: JavaScript", "1: Python", "2: Rust", "3: C++"],
     // This generates [0, 0, 0, 0]. More in the next section!
     answers: new Array(4).fill(0),
     registerNewAnswer : function () {
-        const value = window.prompt(this.question);
-        if (!isNaN(value) && value >= 0 && value < this.answers.length) {
-                this.answers[value]++;
-        }else{
-            window.alert(`The value entered: ${value} is  invalid`);
-        }
-
-        this.displayResults(this.answers);
-        this.displayResults(this.answers.join(','));
+        const value = Number(window.prompt(`${this.question}\n${this.options.join('\n')}`));
+        
+        typeof value === 'number' && value >= 0 && value < this.answers.length && this.answers[value]++;
+        
+        this.displayResults();
+        this.displayResults('string');
     },
-    displayResults : function (result) {
-        if (Array.isArray(result)) {
-            console.log(result);
-        }else {
-            console.log(`Poll results are ${result}`);
+    displayResults : function (type = 'array') {
+        if (type === 'array') {
+            console.log(this.answers);
+        }else if (type === 'string') {
+            console.log(`Poll results are ${this.answers.join(', ')}`);
         }
     }
     };
 
-    const runPolls = poll.registerNewAnswer.bind(poll);
-    const pollButton = document.getElementsByClassName('poll');
-    console.log(pollButton);
-    pollButton[0].addEventListener("click", runPolls)
+    document.querySelector('.poll')
+    .addEventListener("click", poll.registerNewAnswer.bind(poll));
     
+    poll.displayResults.call({answers : [5, 2, 3]});
+    poll.displayResults.call({answers : [1, 5, 9, 6, 1]}, 'string');
