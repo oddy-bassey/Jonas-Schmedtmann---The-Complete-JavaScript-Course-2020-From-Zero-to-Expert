@@ -6,16 +6,26 @@
  * 
  */
 
-const secureBooking = function() {
-    let passengerCount = 0;
+let f;
 
-    return function() {
-        passengerCount++;
-        console.log(`${passengerCount} passengers`);
+const secureBooking = function() {
+    let value = 20;
+    let val2 = 438;
+
+    f = function() {
+        console.log(value*2+" "+val2);
     }
 }
+secureBooking();
 
-const booker = secureBooking();
-booker();
-booker();
-booker();
+console.log("Eexcuted!!");
+console.dir(f);
+
+const boardPassengers = function(n, wait) {
+    const perGroup = n / 3;
+
+    setTimeout(() => console.log(`${n} passengers now boarding in groups of ${perGroup}`), wait*1000);
+    console.log(`we'll start boarding in ${wait} seconds.`);
+}
+
+boardPassengers(9, 2)
