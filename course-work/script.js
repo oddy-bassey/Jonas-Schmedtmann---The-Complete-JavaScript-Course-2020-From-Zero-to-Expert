@@ -1,12 +1,21 @@
 'use strict'
 
-const runOnce = function (){
-    console.log("This will never run again!");
+/* 
+ * Closures : This is a closed-over varriable environment of the execution context
+ * in which a function was created even after the execution context is gone.
+ * 
+ */
+
+const secureBooking = function() {
+    let passengerCount = 0;
+
+    return function() {
+        passengerCount++;
+        console.log(`${passengerCount} passengers`);
+    }
 }
-runOnce();
 
-(function() {
-    console.log("I execute only once!");
-}) ();
-
-(() => console.log("Just one runtime!!")) ();
+const booker = secureBooking();
+booker();
+booker();
+booker();
