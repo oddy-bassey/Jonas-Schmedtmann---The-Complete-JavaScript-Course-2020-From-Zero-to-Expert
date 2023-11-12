@@ -99,16 +99,59 @@ arr.splice(1, 2);
 console.log(arr);
 
 // REVERSE METHOD - mutates the original array
+console.log("REVERSE METHOD")
 arr = ['j', 'i', 'h', 'g', 'f'];
 let arr2 = arr.reverse();
 console.log(arr2);
 
 // CONCAT 
+console.log("CONCAT mETHOD")
 let arr1 = ['a', 'b', 'c', 'd', 'e'];
 const letters = arr1.concat(arr2);
 console.log(letters);
 console.log([...arr1, ...arr2]);
 
 // JOIN
+console.log("JOIN METHOD")
 console.log(letters.join('-'));
 
+/* Looping through an array using For-Each
+ * Note: For-each loop does not support loop breakout
+ */
+console.log("For of Loop")
+for(const movement of movements) {
+  if(movement > 0){
+    console.log(`you deposited ${movement}`);
+  } else{
+    console.log(`you withdrew ${movement}`);
+  }
+}
+
+// accessing the index in for-of loop
+console.log("For of Loop, accessing the array index")
+for(const [index, movement] of movements.entries()) {
+  if(movement > 0){
+    console.log(`at movement ${index+1} you deposited ${movement}`);
+  } else{
+    console.log(`at movement ${index+1} you withdrew ${movement}`);
+  }
+}
+
+console.log("For Each Loop")
+movements.forEach(function(movement) {
+  if(movement > 0){
+    console.log(`you deposited ${movement}`);
+  } else{
+    console.log(`you withdrew ${movement}`);
+  }
+});
+
+// accessing the index in for-each loop
+console.log("For Each Loop, accessing the array index")
+movements.forEach(function(movement, index, arrData) {
+  if(movement > 0){
+    console.log(`at movement ${index+1} you deposited ${movement}`);
+  } else{
+    console.log(`at movement ${index+1} you withdrew ${movement}`);
+  }
+});
