@@ -105,7 +105,7 @@ let arr2 = arr.reverse();
 console.log(arr2);
 
 // CONCAT 
-console.log("CONCAT mETHOD")
+console.log("CONCAT METHOD")
 let arr1 = ['a', 'b', 'c', 'd', 'e'];
 const letters = arr1.concat(arr2);
 console.log(letters);
