@@ -82,7 +82,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 let arr = ['a', 'b', 'c', 'd', 'e'];
 
 // SLICE - does not modify the original array
-console.log("SLICE METHOD")
+console.log("SLICE METHOD");
 console.log(arr.slice(2)); // array from index 2
 console.log(arr.slice(2, 4)); // array from index 2 exclude from index 4
 console.log(arr.slice(-2)); // array from the second to the last index
@@ -92,33 +92,33 @@ console.log(arr.slice()); // returns all elements of the array
 console.log([...arr]); // spreads the array or creates a shallow copy of the array
 
 // SPLICE - modifies the original array
-console.log("SPLICE METHOD")
+console.log("SPLICE METHOD");
 arr.splice(-1);
 console.log(arr);
 arr.splice(1, 2);
 console.log(arr);
 
 // REVERSE METHOD - mutates the original array
-console.log("REVERSE METHOD")
+console.log("REVERSE METHOD");
 arr = ['j', 'i', 'h', 'g', 'f'];
 let arr2 = arr.reverse();
 console.log(arr2);
 
 // CONCAT 
-console.log("CONCAT METHOD")
+console.log("CONCAT METHOD");
 let arr1 = ['a', 'b', 'c', 'd', 'e'];
 const letters = arr1.concat(arr2);
 console.log(letters);
 console.log([...arr1, ...arr2]);
 
 // JOIN
-console.log("JOIN METHOD")
+console.log("JOIN METHOD");
 console.log(letters.join('-'));
 
 /* Looping through an array using For-Each
  * Note: For-each loop does not support loop breakout
  */
-console.log("For of Loop")
+console.log("For of Loop");
 for(const movement of movements) {
   if(movement > 0){
     console.log(`you deposited ${movement}`);
@@ -128,7 +128,7 @@ for(const movement of movements) {
 }
 
 // accessing the index in for-of loop
-console.log("For of Loop, accessing the array index")
+console.log("For of Loop, accessing the array index");
 for(const [index, movement] of movements.entries()) {
   if(movement > 0){
     console.log(`at movement ${index+1} you deposited ${movement}`);
@@ -137,7 +137,7 @@ for(const [index, movement] of movements.entries()) {
   }
 }
 
-console.log("For Each Loop")
+console.log("For Each Loop");
 movements.forEach(function(movement) {
   if(movement > 0){
     console.log(`you deposited ${movement}`);
@@ -147,11 +147,26 @@ movements.forEach(function(movement) {
 });
 
 // accessing the index in for-each loop
-console.log("For Each Loop, accessing the array index")
+console.log("For Each Loop, accessing the array index");
 movements.forEach(function(movement, index, arrData) {
   if(movement > 0){
     console.log(`at movement ${index+1} you deposited ${movement}`);
   } else{
     console.log(`at movement ${index+1} you withdrew ${movement}`);
   }
+});
+
+// Iterating through Maps
+console.log(`Looping through Maps using ForEach ${currencies}`);
+console.log(currencies);
+currencies.forEach(function(currency, key, data) {
+  console.log(`${key} : ${currency}`);
+});
+
+// Iterating through Sets
+const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
+console.log(`Looping through Sets using ForEach`);
+console.log(currenciesUnique);
+currenciesUnique.forEach(function(currency, key, data) {
+  console.log(`${key} : ${currency}`);
 });
